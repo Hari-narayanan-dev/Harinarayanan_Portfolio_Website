@@ -1,4 +1,4 @@
-// import { Github, Linkedin, TwitterX } from "lucide-react";
+import React, { useState } from 'react';
 
 const Github = ({ className = "w-6 h-6" }) => (
   <svg
@@ -55,25 +55,70 @@ const TwitterX = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
+export const Footer = () => {
+  const [open, setOpen] = useState(false);
 
-export const Footer = () => (
-    <footer className="flex flex-col items-center justify-center space-y-8 px-4 py-16 border-t border-gray-900">
-         <button className="text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg border border-gray-700 transition-colors">
-            View Resume
+  const resumeUrl =
+    "https://drive.google.com/file/d/1nDo-u8BBf7kxKuqsF4N9oC8LPGYjhOM2/preview";
+
+  return (
+    <>
+      <footer className="flex flex-col items-center justify-center space-y-8 px-4 py-16 border-t border-gray-900">
+        <button
+          onClick={() => setOpen(true)}
+          className="text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg border border-gray-700 transition-colors"
+        >
+          View Resume
         </button>
+
         <div className="flex items-center space-x-6 text-gray-500">
-            <a href="https://github.com/Hari-narayanan-dev" className="hover:text-white transition-colors">
-                <Github className="w-6 h-6" />
-            </a>
-             <a href="https://www.linkedin.com/in/harinarayanan-pari/" target='_blank' className="hover:text-white transition-colors">
-                <Linkedin className="w-6 h-6" />
-            </a>
-             <a href="#" className="hover:text-white transition-colors">
-                <TwitterX className="w-6 h-6" />
-            </a>
+          <a
+            href="https://github.com/Hari-narayanan-dev"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            <Github className="w-6 h-6" />
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/harinarayanan-pari/"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            <Linkedin className="w-6 h-6" />
+          </a>
+
+          <a href="#" className="hover:text-white transition-colors">
+            <TwitterX className="w-6 h-6" />
+          </a>
         </div>
+
         <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} Harinarayanan. All rights reserved.
+          © {new Date().getFullYear()} Harinarayanan. All rights reserved.
         </p>
-    </footer>
-);
+      </footer>
+
+      {/* Modal */}
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+          <div className="relative w-full max-w-4xl h-[80vh] bg-gray-900 rounded-lg border border-gray-700">
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-3 right-4 text-gray-400 hover:text-white text-xl"
+            >
+              ✕
+            </button>
+
+            <iframe
+              src={resumeUrl}
+              className="w-full h-full rounded-lg"
+              allow="autoplay"
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
