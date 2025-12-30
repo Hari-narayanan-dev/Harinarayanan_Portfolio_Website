@@ -1,2 +1,7 @@
 motor 
 pymongo
+fastapi
+uvicorn
+pymongo
+pydantic
+python-multipart
