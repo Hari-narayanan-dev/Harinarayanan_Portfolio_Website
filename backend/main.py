@@ -2,6 +2,8 @@ from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pymongo
+from config import *
+
 
 app = FastAPI(title="Portfolio Backend")
 
@@ -28,12 +30,12 @@ async def root():
 @app.post("/contact")
 # async def contact(name: str = Form(...), email: str = Form(...), message: str = Form(...)):
 async def contact(data: ContactRequest):
-    connection_string = "mongodb+srv://Harinarayanan:Harrixharimongodb@careerdata.edacahv.mongodb.net/?appName=CareerData"
+    connection_string = MONGO_URL
     client = pymongo.MongoClient(connection_string)
     # Access your database (replace <database_name> with your actual database name)
-    db = client["Portfolio_data"]
+    db = client[MONGO_FORM_DB]
     # Example: List all collections
-    collection = db["portfolio_contact_form"]
+    collection = db[MONGO_FORM_COLLECTION]
     contact_message = {
         "name": data.name,
         "email": data.email,
