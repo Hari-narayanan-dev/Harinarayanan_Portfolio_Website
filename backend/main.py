@@ -10,7 +10,7 @@ app = FastAPI(title="Portfolio Backend")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # restrict to frontend origin in production
+    allow_origins=["https://hari-narayanan-portfolio.web.app", "http://localhost:5173/" ],  # restrict to frontend origin in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
