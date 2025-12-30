@@ -17,9 +17,9 @@ app.add_middleware(
 )
 
 class ContactRequest(BaseModel):
-    name: str = Form(...),
-    email: str = Form(...),
-    message: str = Form(...)
+    name: str
+    email: str
+    message: str
 
 
 @app.get("/")
