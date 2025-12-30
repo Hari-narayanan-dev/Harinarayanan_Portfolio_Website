@@ -45,6 +45,10 @@ async def contact(data: ContactRequest):
     # In production, save to DB / send email. For now just print + return
     print(f"New contact message from {data.name} <{data.email}>: {data.message}")
     return {"status": "success", "detail": "Message received"}
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app)
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app)
+    port = int(os.environ.get("PORT", 4000))
+    app.run(host="0.0.0.0", port=port)
