@@ -4,8 +4,7 @@ import { Skills } from './components/skills.jsx';
 import {Footer} from './components/footer.jsx';
 import {Projects} from './components/projects.jsx';
 import { Hero } from './components/Hero.jsx';
-import Contact from './components/contact.jsx';
-import DriveFileViewer from "./components/Resume_viewer.jsx";     
+import Contact from './components/contact.jsx';     
 
 const Code = ({ className = "w-6 h-6" }) => (
   <svg
