@@ -30,6 +30,7 @@ const Contact = () => {
         setStatus('sending');
 
         const formData = { name, email, message };
+        const BACKEND_API_URL = "https://harinarayanan-portfolio-website.onrender.com"
 
         // --- PYTHON BACKEND INTEGRATION ---
         // This is where you would send the data to your Python backend.
@@ -38,7 +39,7 @@ const Contact = () => {
         // Example using fetch to a hypothetical /api/contact endpoint:
         
         try {
-            const response = await fetch('http://127.0.0.1:8000/contact', {
+            const response = await fetch(`${BACKEND_API_URL}/contact`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

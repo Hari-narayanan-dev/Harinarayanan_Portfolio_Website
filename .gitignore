@@ -1,3 +1,6 @@
 backend/venv
 frontend/node_modulesorigin main
 backend/.env
+
+# Firebase
+frontend/.firebase
