@@ -1,8 +1,7 @@
-motor 
-pymongo
 fastapi
 uvicorn
+pydantic[email]
+motor
 pymongo
-pydantic
 python-multipart
 python-dotenv
