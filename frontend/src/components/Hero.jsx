@@ -1,6 +1,9 @@
-// --- 2. Hero Component ---
+// import NixieClock from "./NixieClock/NixieClock";
+// --- 2. Hero Component ---  
+
 export const Hero = () => (
   <section className="flex flex-col items-center justify-center min-h-screen w-full text-center px-4 pt-24 pb-16">
+    {/* <NixieClock/> */}
     <h1 className="text-7xl md:text-8xl font-bold text-white mb-4">
       Hari Narayanan
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">.</span>
@@ -15,12 +18,8 @@ export const Hero = () => (
     <p className="text-md text-gray-500 max-w-2xl mb-8">
       Currently Junior Software Developer at{' '}
       <a href="https://finkraft.ai/en" className="text-blue-400 hover:underline">
-        Finkraft.ai
-      </a>{' '}
-      {/* and Tech Lead at{' '}
-      <a href="#" className="text-gray-200 hover:underline">
-        Vercel
-      </a> */}
+        Finkraft.ai{' '}
+      </a>
       .
     </p>
     <div className="flex flex-wrap items-center justify-center gap-3">

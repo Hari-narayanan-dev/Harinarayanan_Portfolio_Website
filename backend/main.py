@@ -1,54 +1,76 @@
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-import pymongo
-from config import *
+from pydantic import BaseModel, EmailStr
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
 
+from config import MONGO_FORM_DB, MONGO_FORM_COLLECTION
 
+# =========================
+# LOAD ENV
+# =========================
+load_dotenv()
+
+MONGO_URL = os.getenv("MONGO_URL")
+
+if not all([MONGO_URL, MONGO_FORM_DB, MONGO_FORM_COLLECTION]):
+    raise RuntimeError("Missing MongoDB configuration")
+
+# =========================
+# DATABASE
+# =========================
+client = MongoClient(MONGO_URL)
+db = client[MONGO_FORM_DB]
+collection = db[MONGO_FORM_COLLECTION]
+
+# =========================
+# APP
+# =========================
 app = FastAPI(title="Portfolio Backend")
 
-
+# =========================
+# CORS
+# =========================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://hari-narayanan-portfolio.web.app", "http://localhost:5173/" ],  # restrict to frontend origin in production
+    allow_origins=[
+        "https://hari-narayanan-portfolio.web.app",
+        "http://localhost:5173",
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
+# =========================
+# MODELS
+# =========================
 class ContactRequest(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     message: str
 
-
+# =========================
+# ROUTES
+# =========================
 @app.get("/")
-async def root():
-    return {"message": "Portfolio backend running"}
+async def health_check():
+    return {"status": "ok"}
 
-
-@app.post("/contact")
-# async def contact(name: str = Form(...), email: str = Form(...), message: str = Form(...)):
+@app.post("/contact", status_code=status.HTTP_201_CREATED)
 async def contact(data: ContactRequest):
-    connection_string = MONGO_URL
-    client = pymongo.MongoClient(connection_string)
-    # Access your database (replace <database_name> with your actual database name)
-    db = client[MONGO_FORM_DB]
-    # Example: List all collections
-    collection = db[MONGO_FORM_COLLECTION]
-    contact_message = {
-        "name": data.name,
-        "email": data.email,
-        "message": data.message
-    }
-    collection.insert_one(contact_message)
-    # In production, save to DB / send email. For now just print + return
-    print(f"New contact message from {data.name} <{data.email}>: {data.message}")
-    return {"status": "success", "detail": "Message received"}
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app)
+    try:
+        result = collection.insert_one(data.dict())
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 4000))
-    app.run(host="0.0.0.0", port=port)
+        return {
+            "status": "success",
+            "id": str(result.inserted_id),
+        }
+
+    except Exception as e:
+        print("CONTACT ERROR:", e)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to submit contact message",
+        )

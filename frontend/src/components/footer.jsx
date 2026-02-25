@@ -59,7 +59,7 @@ export const Footer = () => {
   const [open, setOpen] = useState(false);
 
   const resumeUrl =
-    "https://drive.google.com/file/d/1nDo-u8BBf7kxKuqsF4N9oC8LPGYjhOM2/preview";
+    "https://drive.google.com/file/d/1nDo-u8BBf7kxKuqsF4N9oC8LPGYjhOM2/view?usp=sharing";
 
   return (
     <>

@@ -72,12 +72,9 @@ export default function App() {
              [background-size:10rem_4rem] [background-position:0_0,0_0]"
 >
       <div className="relative z-10 bg-gradient-to-b from-black via-black to-black w-full">
-        {/* <Header /> */}
         <main>
           <Hero />
           <ChatbotWidget />
-          <Skills />
-          <Projects />
           <Contact />
         </main>
         <Footer />

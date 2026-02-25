@@ -30,7 +30,8 @@ const Contact = () => {
         setStatus('sending');
 
         const formData = { name, email, message };
-        const BACKEND_API_URL = "https://harinarayanan-portfolio-website.onrender.com"
+        // const BACKEND_API_URL = "https://harinarayanan-portfolio-website.onrender.com"
+        const BACKEND_API_URL = "http://localhost:8000"
 
         // --- PYTHON BACKEND INTEGRATION ---
         // This is where you would send the data to your Python backend.
@@ -46,28 +47,24 @@ const Contact = () => {
                 },
                 body: JSON.stringify(formData),
             });
-
+            console.log(formData)
             if (response.ok) {
                 setStatus('success');
                 setName('');
                 setEmail('');
                 setMessage('');
+                console.log('Form data to send to Python backend:', formData);
             } else {
                 setStatus('error');
+                console.log('Failed to send to Python backend:', formData);
             }
         } catch (error) {
             console.error('Error submitting form:', error);
             setStatus('error');
         }
-
-
-        // --- SIMULATION FOR THIS DEMO ---
-        // We'll just log the data and simulate a successful response.
-        console.log('Form data to send to Python backend:', formData);
         
         // Simulate network delay
         setTimeout(() => {
-            setStatus('success');
             setName('');
             setEmail('');
             setMessage('');

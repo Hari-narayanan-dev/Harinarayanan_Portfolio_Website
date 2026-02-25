@@ -1,6 +1,108 @@
 backend/venv
-frontend/node_modulesorigin main
+frontend/node_modules origin main
 backend/.env
 
 # Firebase
 frontend/.firebase
+
+*.pyc
+# ==========================================================
+# PYTHON (FastAPI Backend)
+# ==========================================================
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+ENV/
+backend/venv/
+.venv/
+
+# Environment variables
+.env
+.env.*
+backend/.env
+
+# Python distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# Pytest / coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+
+# Mypy
+.mypy_cache/
+
+# ==========================================================
+# NODE / REACT (Frontend)
+# ==========================================================
+
+# Node modules
+node_modules/
+frontend/node_modules/
+
+# Build output
+build/
+dist/
+frontend/build/
+frontend/dist/
+
+# Next / Vite cache (safe addition)
+.next/
+.vite/
+
+# Firebase
+frontend/.firebase/
+.firebase/
+
+# NPM logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================================
+# DATABASE FILES
+# ==========================================================
+
+*.sqlite3
+*.db
+
+# ==========================================================
+# IDE / EDITOR
+# ==========================================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================================
+# OS FILES
+# ==========================================================
+
+.DS_Store
+Thumbs.db
+
+# ==========================================================
+# DOCKER (if you use later)
+# ==========================================================
+
+*.env.docker
+
+# ==========================================================
+# RENDER / DEPLOYMENT
+# ==========================================================
+
+.render
