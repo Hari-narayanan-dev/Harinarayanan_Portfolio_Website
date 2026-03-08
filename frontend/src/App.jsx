@@ -1,5 +1,5 @@
 import "./App.css";
-import ChatbotWidget from './components/chat_widget.jsx';
+import ChatBox from './components/chat_widget.jsx';
 import { Skills } from './components/skills.jsx';
 import {Footer} from './components/footer.jsx';
 import {Projects} from './components/projects.jsx';
@@ -74,11 +74,13 @@ export default function App() {
       <div className="relative z-10 bg-gradient-to-b from-black via-black to-black w-full">
         <main>
           <Hero />
-          <ChatbotWidget />
+          <ChatBox title="AI Assistant" placeholder="Ask me anything…" />
           <Contact />
         </main>
         <Footer />
       </div>
+      {/* ── AI Chat Widget — fixed overlay, renders above everything ──────── */}
+        <ChatBox title="AI Assistant" placeholder="Ask me anything…" />
     </div>
   );
 }
