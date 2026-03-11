@@ -1,6 +1,35 @@
 // import NixieClock from "./NixieClock/NixieClock";
 // --- 2. Hero Component ---  
 
+
+
+const getExperience = (joiningDate) => {
+  const start = new Date(joiningDate);
+  const now = new Date();
+
+  const years = now.getFullYear() - start.getFullYear();
+  const months = now.getMonth() - start.getMonth();
+
+  // Total months of experience
+  const totalMonths = years * 12 + months;
+  const fullYears = Math.floor(totalMonths / 12);
+  const remMonths = totalMonths % 12;
+
+  if (fullYears === 0) {
+    return `${remMonths}+ months`;
+  } else if (remMonths === 0) {
+    return `${fullYears}+ years`;
+  } else {
+    // e.g. "1.5+ years", "2.8+ years"
+    const decimal = (remMonths / 12).toFixed(1).replace("0.", ".");
+    return `${fullYears}${decimal}+ years`;
+  }
+};
+
+// ← Set your actual joining / first professional experience date here
+const JOINING_DATE = "2024-04-15";
+const experience = getExperience(JOINING_DATE);
+
 export const Hero = () => (
   <section className="flex flex-col items-center justify-center min-h-screen w-full text-center px-4 pt-24 pb-16">
     {/* <NixieClock/> */}
@@ -12,7 +41,7 @@ export const Hero = () => (
       Software Developer
     </h2>
     <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-6">
-      I craft end-to-end solutions with 1.7+ years of experience building scalable
+      I craft end-to-end solutions with {experience} years of experience building scalable
       applications and maintaining/enhancing them.
     </p>
     <p className="text-md text-gray-500 max-w-2xl mb-8">

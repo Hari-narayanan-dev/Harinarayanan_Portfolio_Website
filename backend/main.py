@@ -405,14 +405,18 @@ async def chat(body: ChatRequest):
     start = time.time()
 
     try:
-        reply = get_keyword_reply(body.message)
+        # reply = get_keyword_reply(body.message)
 
-        if reply is not None:
-            logger.info(f"Keyword match → '{reply}'")
-        else:
-            logger.info("No keyword match — calling Groq (Llama 3)...")
-            reply = await get_ai_reply(body.message)
-            logger.info(f"Groq reply: '{reply[:80]}{'...' if len(reply) > 80 else ''}'")
+        # if reply is not None:
+        #     logger.info(f"Keyword match → '{reply}'")
+        # else:
+        #     logger.info("No keyword match — calling Groq (Llama 3)...")
+        #     reply = await get_ai_reply(body.message)
+        #     logger.info(f"Groq reply: '{reply[:80]}{'...' if len(reply) > 80 else ''}'")
+
+        logger.info("calling Groq (Llama 3)...")
+        reply = await get_ai_reply(body.message)
+        logger.info(f"Groq reply: '{reply[:80]}{'...' if len(reply) > 80 else ''}'")
 
         logger.info(f"Done in {round((time.time() - start) * 1000)}ms")
         return ChatResponse(reply=reply, timestamp=int(time.time() * 1000))
