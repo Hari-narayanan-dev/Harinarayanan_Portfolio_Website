@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
-const API_URL = "http://localhost:8000/api/chat";
+// const API_URL = "http://localhost:8000/api/chat";
+const API_URL = "https://harinarayanan-portfolio-website.onrender.com/api/chat";
 
 /* ─── Keyframes injected once ────────────────────────────────────────────── */
 const KEYFRAMES = `

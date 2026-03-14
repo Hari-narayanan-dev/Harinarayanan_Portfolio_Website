@@ -30,8 +30,8 @@ const Contact = () => {
         setStatus('sending');
 
         const formData = { name, email, message };
-        // const BACKEND_API_URL = "https://harinarayanan-portfolio-website.onrender.com"
-        const BACKEND_API_URL = "http://localhost:8000"
+        const BACKEND_API_URL = "https://harinarayanan-portfolio-website.onrender.com"
+        // const BACKEND_API_URL = "http://localhost:8000"
 
         // --- PYTHON BACKEND INTEGRATION ---
         // This is where you would send the data to your Python backend.
