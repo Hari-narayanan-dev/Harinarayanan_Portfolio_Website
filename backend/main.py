@@ -205,7 +205,7 @@ import os
 import logging
 from groq import Groq
 from pydantic import BaseModel, EmailStr
-from config import
+from config import PORTFOLIO_CONTEXT
 
 
 from config import MONGO_FORM_DB, MONGO_FORM_COLLECTION
